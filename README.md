@@ -1,11 +1,55 @@
-This project was generated with [Amplication](https://amplication.com)
+# Todo App 
 
-It consists of two packages:
+This todo app was built with Amplication (Backend) and VueJS  (Frontend)
 
-### [Server](./server/README.md)
+# Installation 
 
-### [Admin UI](./admin-ui/README.md)
+- Clone the GitHub Repository:
 
-### Learn more
+```
+git clone https://github.com/AsianCat54x/TodoApp.git
+```
 
-You can learn more in the [Amplication documentation](https://docs.amplication.com/guides/getting-started).
+# Setup the server 
+
+**Make sure that you are inside of the server folder (/server)**
+
+- Install all the required dependencies
+
+```
+npm run i
+```
+
+- Setup the database in docker container
+
+```
+npm run docker:db
+```
+
+- Seed the database
+
+```
+npm run db:init
+```
+
+- Start the server 
+
+```
+npm run start
+```
+
+# Setup the frontend
+
+**Make sure that you are inside of the website folder (/website)**
+
+- Install all the required dependencies
+
+```
+npm run i
+```
+
+- Start the app
+
+```
+npm run serve
+```
