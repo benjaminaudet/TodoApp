@@ -29,8 +29,9 @@ export default {
         }
     },
     mounted() {
-        // https://stackoverflow.com/questions/50213901/reload-page-in-vue-just-once-in-mounted
+        document.title = "Todo List"
 
+        // https://stackoverflow.com/questions/50213901/reload-page-in-vue-just-once-in-mounted
         if (localStorage.getItem('reloaded')) {
             localStorage.removeItem('reloaded');
         } else {

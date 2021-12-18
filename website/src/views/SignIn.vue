@@ -22,6 +22,9 @@ export default {
             password: ""
         }
     },
+    mounted(){
+        document.title = "Sign In | Todo App"
+    },
     methods: {
         authenticate: function(){
             fetch("http://34.71.135.86/api/login" , {

@@ -25,6 +25,9 @@ export default {
             password: ""
         }
     },
+    mounted(){
+        document.title = "Sign Up | Todo App"
+    },
     methods: {
         createUser: function () {
             fetch("http://34.71.135.86/api/users", {
