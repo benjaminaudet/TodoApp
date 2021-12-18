@@ -1,9 +1,15 @@
 <template>
-<div class="container">
-    <h2 class="center-align">Sign In</h2>
-    <input type="text" v-model="username" placeholder="Enter your username">
-    <input type="password" v-model="password" placeholder="Enter your password">
-    <button class="btn" v-on:click="authenticate()">Sign In</button>
+<div class="_container">
+    <br><br>
+    <h2 class="text-center text-5xl">Sign In</h2>
+    <br><br>
+    <input class="appearance-none rounded w-full py-2 px-4 leading-tight mb-50" id="inline-full-name" type="text" v-model="username" placeholder="Enter your username...">
+    <input class="appearance-none rounded w-full py-2 px-4 leading-tight " id="inline-full-name" type="password" v-model="password" placeholder="Enter your password...">
+    <br>
+    <button class="pl-1 rounded" v-on:click="authenticate()">Sign In</button>
+    <br><br><br>
+    <div class="text-sm text-center">Don't have an account? <a href="/signup">Sign Up!</a></div>
+
 </div>
 </template>
 
@@ -18,7 +24,7 @@ export default {
     },
     methods: {
         authenticate: function(){
-            fetch("http://localhost:3000/api/login" , {
+            fetch("http://34.71.135.86/api/login" , {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -43,3 +49,20 @@ export default {
     }
 }
 </script>
+
+<style scoped>
+._container{
+    margin: 50px;
+}
+
+input{
+    margin-bottom: 50px;
+}
+
+button{
+    height: 60px;
+    position: relative;
+    left: 0%;
+    width: 100%;
+}
+</style>

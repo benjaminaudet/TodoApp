@@ -1,16 +1,20 @@
 <template>
-<div class="container">
-    <h2 class="center-align">Your Todos</h2>
-    <div class="row" style="display: flex">
-        <input type="text" v-model="todo" placeholder="Enter the todo">
-        <button class="btn" v-on:click="addTodo()">Add Todo</button>
+<div class="_container">
+    <br><br>
+    <h2 class="text-center text-5xl">Your Todos</h2>
+    <br><br><br>
+    <div class="flex todo-bar">
+        <input class="appearance-none rounded w-full py-2 px-4 leading-tight " id="inline-full-name" type="text" v-model="todo">
+        <button class="pl-1 ml-10 rounded" v-on:click="addTodo()">Add Todo</button>
     </div>
+    <br><br><br>
     <div class="todos">
         <div class="todo" v-for="todo in todos" v-bind:key="todo">
             <span class="text">{{todo}}</span>
-            <i class="fas fa-times deleteTodo" v-on:click="deleteTodo(todo)"></i>
+            <i class="fad fa-times deleteTodo" v-on:click="deleteTodo(todo)"></i>
         </div>
     </div>
+    <i class="fad fa-sign-out-alt logout" v-on:click="logout()"></i>
 </div>
 </template>
 
@@ -25,9 +29,19 @@ export default {
         }
     },
     mounted() {
+        // https://stackoverflow.com/questions/50213901/reload-page-in-vue-just-once-in-mounted
+
+        if (localStorage.getItem('reloaded')) {
+            localStorage.removeItem('reloaded');
+        } else {
+            localStorage.setItem('reloaded', '1');
+            location.reload();
+        }
+        
+
         const credentials = atob(window.localStorage.getItem("accessToken")).split(":")
 
-        fetch("http://localhost:3000/api/login", {
+        fetch("http://34.71.135.86/api/login", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -45,7 +59,7 @@ export default {
             } 
         })
 
-        fetch("http://localhost:3000/api/users" , {
+        fetch("http://34.71.135.86/api/users" , {
             method: "GET",
             headers: {
                 "Authorization": "Basic YWRtaW46YWRtaW4="
@@ -66,7 +80,7 @@ export default {
     },
     methods: {
         setTodos: function(){
-            fetch(`http://localhost:3000/api/users/${this.id}` , {
+            fetch(`http://34.71.135.86/api/users/${this.id}` , {
                 method: "PATCH",
                 headers: {
                     "Content-Type": "application/json",
@@ -86,6 +100,8 @@ export default {
 
             this.todos.push(this.todo)
 
+            this.todo = ""
+
             this.setTodos()
         },
         deleteTodo: function(todo){
@@ -102,17 +118,22 @@ export default {
 
                 this.setTodos()
             }
+        },
+        logout: function(){
+            window.localStorage.removeItem("accessToken")
+
+            this.$router.push({ path: "/signin" })
         }
     }
 }
 </script>
 
-<style scoped>
+<style>
 .todo {
     width: 100%;
-    height: 60px;
-    background-color: #EEE;
-    color: black;
+    height: 70px;
+    background-color: #3B4252;
+    color: #D8DEE9;
     padding-left: 30px;
     display: flex;
     align-items: center;
@@ -123,7 +144,46 @@ export default {
 
 .deleteTodo{
     position: absolute;
-    left: calc(100% - 30px);
+    left: calc(100% - 60px);
+    cursor: pointer;
+}
 
+input{
+    width: 95%;
+    height: 60px;
+}
+
+.todo-bar{
+    position: relative;
+    left: 5%;
+    width: 90%;
+}
+
+button{
+    width: 200px;
+    background-color: #3B4252;
+}
+
+button:focus{
+    outline: none;
+}
+
+.todos{
+    position: relative;
+    left: 5%;
+    width: 90%;
+}
+
+i{
+    color: #88C0D0;
+    font-size: 25px
+}
+
+.logout{
+    font-size: 30px;
+    position: absolute;
+    top: 30px;
+    left: calc(100% - 70px);
+    cursor: pointer;
 }
 </style>
