@@ -27,7 +27,7 @@ export default {
     },
     methods: {
         authenticate: function(){
-            fetch("http://34.71.135.86/api/login" , {
+            fetch("https://amplicationtodoapp.herokuapp.com/api/login" , {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

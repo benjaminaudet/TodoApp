@@ -42,7 +42,7 @@ export default {
 
         const credentials = atob(window.localStorage.getItem("accessToken")).split(":")
 
-        fetch("http://34.71.135.86/api/login", {
+        fetch("https://amplicationtodoapp.herokuapp.com/api/login", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -60,7 +60,7 @@ export default {
             } 
         })
 
-        fetch("http://34.71.135.86/api/users" , {
+        fetch("https://amplicationtodoapp.herokuapp.com/api/users" , {
             method: "GET",
             headers: {
                 "Authorization": "Basic YWRtaW46YWRtaW4="
@@ -81,7 +81,7 @@ export default {
     },
     methods: {
         setTodos: function(){
-            fetch(`http://34.71.135.86/api/users/${this.id}` , {
+            fetch(`https://amplicationtodoapp.herokuapp.com/api/users/${this.id}` , {
                 method: "PATCH",
                 headers: {
                     "Content-Type": "application/json",
